@@ -19,7 +19,7 @@ const ExpenseItem = (props) => {
     const increaseAllocation = (name) => {
         const expense = {
             name: name,
-            const: 10,
+            cost: 10,
         };
 
         dispatch({
