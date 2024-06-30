@@ -5,7 +5,7 @@ import React, { useContext, useState } from 'react';
 import { AppContext } from '../context/AppContext';
 
 const AllocationForm = (props) => {
-    const { dispatch,remaining } = useContext(AppContext);
+    const { dispatch,remaining, currency } = useContext(AppContext);
 
     const [name, setName] = useState('');
     const [cost, setCost] = useState('');
@@ -14,7 +14,7 @@ const AllocationForm = (props) => {
     //adding form tags, adding a label/input for name, cost and action field and adding values for various departments
     const submitEvent = () => {
         if (cost > remaining) {
-            alert("The value cannot exceed remaining funds £"+remaining);
+            alert("The value cannot exceed remaining funds "+ currency + remaining);
             setCost("");
             return;
         }
@@ -60,7 +60,8 @@ const AllocationForm = (props) => {
                         <option defaultValue value="Add" name="name">Add</option>
                         <option value="Reduce" name="reduce">Reduce</option>                        
                     </select>
-                    <input required='required' type='number' id='cost' value={cost} style={{ marginLeft: '2rem', size: 10 }} onChange={(event)=> setCost(event.target.value)}></input>
+                    <label style={{ marginLeft: '2rem', size: 10 }}  htmlFor='cost'>{currency}</label>
+                    <input required='required' type='number' id='cost' value={cost} style={{size: 10 }} onChange={(event)=> setCost(event.target.value)}></input>
                     <button className='btn btn-primary' onClick={submitEvent} style={{ marginLeft: '2rem'}}>Save</button>
 
                 </div>
